@@ -1,0 +1,17 @@
+{
+    //You can add comments to your template using any of the two styles. This is the first style.
+    //Template definition below.
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+    },
+    /* This is the second style of commenting which you can use
+    * Variable definition below.
+    */
+    "variables": {
+    },
+    "resources": [
+    ],
+    "outputs": {
+    }
+}
