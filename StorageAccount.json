@@ -14,19 +14,16 @@
       "metadata": {
         "description": "Storage Account type"
       }
-    },
-    "storageAccountName": {
-      "type": "string"
     }
   },
   "variables": {
-    "storageAccountName": "ravteststorage23",
+    "storageAccountName": "ravteststorage24",
     "apiVersion": "2015-06-15"
   },
   "resources": [
     {
       "type": "Microsoft.Storage/storageAccounts",
-      "name": "[parameters('storageAccountName')]",
+      "name": "[variables('storageAccountName')]",
       "apiVersion": "[variables('apiVersion')]",
       "location": "[resourceGroup().location]",
       "dependsOn" : [ ],
