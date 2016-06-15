@@ -11,13 +11,10 @@
      "properties": { 
        "mode": "incremental", 
        "templateLink": {
-          "uri": "https://raw.githubusercontent.com/ravbhatnagar/ARMExamples/master/StorageAccount.json",
+          "uri": "https://raw.githubusercontent.com/ravbhatnagar/ARMExamples/master/NestedTemplateStorage.json",
           "contentVersion": "1.0.0.0"
-       }, 
-       "parameters": {
-	   "storageAccountName": {"value":"ravnestedstorage"}
-	   } 
-     } 
+       }
+     }
 
   }
   ]
