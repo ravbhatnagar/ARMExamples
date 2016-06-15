@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+  },
+  "resources": [
+  {
+	"apiVersion": "2015-01-01", 
+     "name": "nestedTemplate", 
+     "type": "Microsoft.Resources/deployments", 
+     "properties": { 
+       "mode": "incremental", 
+       "templateLink": {
+          "uri": "https://raw.githubusercontent.com/ravbhatnagar/ARMExamples/master/StorageAccount.json",
+          "contentVersion": "1.0.0.0"
+       }, 
+       "parameters": {
+	   "storageAccountName": {"value":"ravnestedstorage"}
+	   } 
+     } 
+
+  },
+  {
+	"apiVersion": "2015-01-01", 
+     "name": "nestedTemplate1", 
+     "type": "Microsoft.Resources/deployments", 
+     "properties": { 
+       "mode": "incremental", 
+       "templateLink": {
+          "uri": "https://raw.githubusercontent.com/ravbhatnagar/ARMExamples/master/StorageAccount.json",
+          "contentVersion": "1.0.0.0"
+       },
+	   "parameters": {
+	   "storageAccountName": {"value":"ravnestedstorage1"}
+	   }
+     } 
+
+  },
+  {
+	"apiVersion": "2015-01-01", 
+     "name": "nestedTemplate2", 
+     "type": "Microsoft.Resources/deployments", 
+     "properties": { 
+       "mode": "incremental", 
+       "templateLink": {
+          "uri": "https://raw.githubusercontent.com/ravbhatnagar/ARMExamples/master/StorageAccount.json",
+          "contentVersion": "1.0.0.0"
+       },
+	   "parameters": {
+	   "storageAccountName": {"value":"ravnestedstorage2"}
+	   }
+       } 
+     } 
+]
+}
