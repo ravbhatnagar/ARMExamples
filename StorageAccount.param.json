@@ -4,9 +4,6 @@
   "parameters": {
     "storageAccountType": {
       "value": "Standard_LRS"
-    },
-    "storageAccountName": {
-      "value": "ravdeleteStorage33"
     }
   }
 }
