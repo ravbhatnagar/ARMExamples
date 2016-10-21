@@ -11,7 +11,7 @@
      "properties": { 
        "mode": "incremental", 
        "templateLink": {
-          "uri": "https://raw.githubusercontent.com/ravbhatnagar/ARMExamples/master/NestedTemplateStorage.json",
+          "uri": "https://raw.githubusercontent.com/ravbhatnagar/ARMExamples/master/StorageAccount.json",
           "contentVersion": "1.0.0.0"
        }
      }
