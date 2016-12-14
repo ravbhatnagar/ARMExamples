@@ -31,7 +31,7 @@
       "dependsOn" : [ ],
 
        "tags": {
-                "StorageEnv1": "Test",
+                "StorageEnv1": "Test2",
 		"StorageEnv2": "Test1"
 	},
       "properties": {
