@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "storageAccountName": {
+      "type": "string"
+    },
+   },
+  "variables": {
+    "applianceInfraResourceGroupId": "[concat(resourceGroup().id,uniquestring(resourceGroup().id))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Solutions/appliances",
+      "name": "[parameters('applianceName')]",
+      "apiVersion": "2016-09-01-preview",
+      "location": "[resourceGroup().location]",
+      "plan": {
+        "name": "",
+        "publisher": "",
+        "product": "",
+        "promotionCode": "",
+        "version": ""
+      },
+      "properties": {
+        "ManagedResourceGroupId": "/subscriptions/78814224-3c2d-4932-9fe3-913da0f278ee/resourceGroups/ravManagedCustRG5",
+	"applianceDefinitionId": "/subscriptions/78814224-3c2d-4932-9fe3-913da0f278ee/resourceGroups/ravApplianceDefRG3/providers/Microsoft.Solutions/applianceDefinitions/ravtestAppDef4",
+        "Parameters": {
+          "storageAccountName": {
+            "value": "[parameters('storageAccountName')]"
+          },
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "hostname": {
+      "type": "String",
+      "value": "[reference(parameters('applianceName')).outputs.hostname.value]"
+    }
+  }
+}
