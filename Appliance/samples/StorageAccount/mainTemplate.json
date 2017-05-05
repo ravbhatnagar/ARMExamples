@@ -33,11 +33,5 @@
         }
       }
     }
-  ],
-  "outputs": {
-    "hostname": {
-      "type": "String",
-      "value": "[reference(parameters('applianceName')).outputs.hostname.value]"
-    }
-  }
+  ]
 }
