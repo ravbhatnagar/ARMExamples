@@ -42,4 +42,6 @@
             "type": "string",
             "value": "[reference(resourceId('Microsoft.CustomProviders/resourceProviders/stopVms', 'vmActions', 'myResource')).vmResourceId]"
         }
+    }
+}
  
