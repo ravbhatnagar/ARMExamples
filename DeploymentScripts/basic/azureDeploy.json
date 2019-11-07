@@ -21,12 +21,10 @@
                 }
             },
             "properties": {
-                "azPowerShellVersion": "2.7",
+                azPowerShellVersion": "1.7.0",
                 "scriptContent": "
-                    param([string] $textToEcho)
-                    Write-Output $textToEcho
-                    $DeploymentScriptOutputs['text'] = $textToEcho",
-                "Arguments": "-textToEcho 'test'",
+                    Write-Output \"Hello Ignite 2019\"
+                ",
                 "timeout": "PT30M",
                 "retentionInterval": "P1D",
                 "cleanupPreference": "OnSuccess",
@@ -35,12 +33,12 @@
         },
         {
             "type": "Microsoft.Resources/deploymentScripts",
-            "name": "scriptInTemplate2",
+            "name": "ravScript2",
             "apiVersion": "2019-10-01-preview",
             "location": "[resourceGroup().location]",
             "kind": "AzurePowerShell",
             "dependsOn": [
-                "scriptInTemplate1"
+                "ravScript1"
             ],
             "identity": {
                 "type": "userAssigned",
@@ -51,7 +49,7 @@
             "properties": {
                 "azPowerShellVersion": "1.7.0",
                 "scriptContent": "
-                    Write-Output \"Hello Ignite 2019\"
+                    Write-Output \"Hello Again Ignite 2019 from Script 2\"
                 ",
                 "timeout": "PT30M",
                 "retentionInterval": "P1D"
@@ -60,7 +58,7 @@
     ],
     "outputs": {
         "result": {
-            "value": "[reference('scriptInTemplate2').outputs.text]",
+            "value": "[reference('ravScript2').outputs.text]",
             "type": "string"
         }
     }
