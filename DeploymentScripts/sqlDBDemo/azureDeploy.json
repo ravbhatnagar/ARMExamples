@@ -63,9 +63,5 @@
         }
     ],
     "outputs": {
-        "timeCompleted": {
-            "type": "string",
-            "value": "[reference('scriptName').outputs.timeCompleted]" 
-        }
     }
 }
