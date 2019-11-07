@@ -21,7 +21,7 @@
                 }
             },
             "properties": {
-                azPowerShellVersion": "1.7.0",
+                "azPowerShellVersion": "1.7.0",
                 "scriptContent": "
                     Write-Output \"Hello Ignite 2019\"
                 ",
