@@ -34,9 +34,7 @@
             },
             "properties": {
                 "azPowerShellVersion": "1.7.0",
-                "scriptContent": "
-                    Write-Output \"Hello Ignite 2019\"
-                ",
+                "scriptContent": "Write-Output \"Hello Ignite 2019\" ",
                 "timeout": "PT30M",
                 "retentionInterval": "P1D",
                 "cleanupPreference": "OnSuccess",
@@ -60,9 +58,7 @@
             },
             "properties": {
                  "azPowerShellVersion": "1.7.0",
-                "scriptContent": "
-                    Write-Output \"Hello Again Ignite 2019 from Script 2\"
-                ",
+                "scriptContent": "Write-Output \"Hello Again Ignite 2019 from Script 2\" ",
                 "timeout": "PT30M",
                 "retentionInterval": "P1D"
             }
