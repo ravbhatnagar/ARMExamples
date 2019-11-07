@@ -5,14 +5,26 @@
         "identity": {
             "type": "string",
             "defaultValue": "/subscriptions/78814224-3c2d-4932-9fe3-913da0f278ee/resourceGroups/ravdeploymentScriptRG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/ravdeploymentScriptIdentity"
+        },
+		 "scriptSuffix": {
+            "type": "string",
+            "defaultValue": "[newGuid()]"
+        },
+		 "script2Suffix": {
+            "type": "string",
+            "defaultValue": "[newGuid()]"
         }
+    },
+	 "variables": {
+        "scriptName1": "[concat('helloworldscript-', parameters('scriptSuffix'))]",
+		"scriptName2": "[concat('helloworldscript-', parameters('script2Suffix'))]"
     },
     "resources": [
         {
             "type": "Microsoft.Resources/deploymentScripts",
-            "name": "ravscript1",
+            "name": "[variables('scriptName1')]",
             "apiVersion": "2019-10-01-preview",
-            "location": "[resourceGroup().location]", 
+            "location": "[resourceGroup().location]",
             "kind": "AzurePowerShell",
             "identity": {
                 "type": "userAssigned",
@@ -33,12 +45,12 @@
         },
         {
             "type": "Microsoft.Resources/deploymentScripts",
-            "name": "ravScript2",
+            "name": "[variables('scriptName2')]",
             "apiVersion": "2019-10-01-preview",
             "location": "[resourceGroup().location]",
             "kind": "AzurePowerShell",
             "dependsOn": [
-                "ravScript1"
+                "scriptInTemplate1"
             ],
             "identity": {
                 "type": "userAssigned",
@@ -47,7 +59,7 @@
                 }
             },
             "properties": {
-                "azPowerShellVersion": "1.7.0",
+                 "azPowerShellVersion": "1.7.0",
                 "scriptContent": "
                     Write-Output \"Hello Again Ignite 2019 from Script 2\"
                 ",
@@ -58,7 +70,7 @@
     ],
     "outputs": {
         "result": {
-            "value": "[reference('ravScript2').outputs.text]",
+            "value": "[reference('scriptName').outputs.text]",
             "type": "string"
         }
     }
