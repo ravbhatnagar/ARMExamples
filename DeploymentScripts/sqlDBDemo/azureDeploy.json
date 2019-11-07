@@ -15,13 +15,13 @@
         }
     },
     "variables": {
-        "scriptName": "[concat('createSqlData-', parameters('scriptSuffix'))]"
+        "scriptName1": "[concat('createSqlData-', parameters('scriptSuffix'))]"
     },
     "resources": [
         {
             "type": "Microsoft.Resources/deploymentScripts",
             "apiVersion": "2019-10-01-preview",
-            "name": "[variables('scriptName')]", 
+            "name": "[variables('scriptName1')]", 
             "location": "[resourceGroup().location]",
             "identity":{   
                 "type":"UserAssigned", 
