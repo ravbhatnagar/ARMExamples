@@ -12,7 +12,7 @@
             "type": "Microsoft.Resources/deploymentScripts",
             "name": "scriptInTemplate1",
             "apiVersion": "2019-10-01-preview",
-            "location": "[resourceGroup().location]", // must be a canary region for now (eastus2euap)
+            "location": "[resourceGroup().location]", 
             "kind": "AzurePowerShell",
             "identity": {
                 "type": "userAssigned",
@@ -55,7 +55,7 @@
                     Write-Output $textToEcho
                     $DeploymentScriptOutputs['text'] = $textToEcho
                 ",
-                "arguments": "[concat('-textToEcho ', reference('scriptInTemplate1').outputs.text, '-morestuff')]", // -textToEcho test-morestuff
+                "arguments": "[concat('-textToEcho ', reference('scriptInTemplate1').outputs.text, '-morestuff')]", 
                 "timeout": "PT30M",
                 "retentionInterval": "P1D"
             }
