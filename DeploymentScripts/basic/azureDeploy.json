@@ -40,28 +40,6 @@
                 "cleanupPreference": "OnSuccess",
                 "forceUpdateTag": "1"
             }
-        },
-        {
-            "type": "Microsoft.Resources/deploymentScripts",
-            "name": "[variables('scriptName2')]",
-            "apiVersion": "2019-10-01-preview",
-            "location": "[resourceGroup().location]",
-            "kind": "AzurePowerShell",
-            "dependsOn": [
-                "[variables('scriptName1')]"
-            ],
-            "identity": {
-                "type": "userAssigned",
-                "userAssignedIdentities": {
-                    "[parameters('identity')]": {}
-                }
-            },
-            "properties": {
-                 "azPowerShellVersion": "1.7.0",
-                "scriptContent": "Write-Output \"Hello Again Ignite 2019 from Script 2\"",
-                "timeout": "PT30M",
-                "retentionInterval": "P1D"
-            }
         }
     ],
     "outputs": {
