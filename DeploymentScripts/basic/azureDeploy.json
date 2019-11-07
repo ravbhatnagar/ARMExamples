@@ -65,9 +65,5 @@
         }
     ],
     "outputs": {
-        "result": {
-            "value": "[reference('scriptName1').outputs.text]",
-            "type": "string"
-        }
     }
 }   
