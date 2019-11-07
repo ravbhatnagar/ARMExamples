@@ -1,0 +1,71 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "msiToUseForSCript": {
+            "type": "string",
+            "defaultValue": "/subscriptions/78814224-3c2d-4932-9fe3-913da0f278ee/resourceGroups/ravdeploymentScriptRG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/ravdeploymentScriptIdentity"
+        },
+        "sqlConnectionString": {
+            "type": "string"
+        },
+        "scriptSuffix": {
+            "type": "string",
+            "defaultValue": "[newGuid()]"
+        }
+    },
+    "variables": {
+        "scriptName": "[concat('createSqlData-', parameters('scriptSuffix'))]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Resources/deploymentScripts",
+            "apiVersion": "2019-10-01-preview",
+            "name": "[variables('scriptName')]", 
+            "location": "[resourceGroup().location]",
+            "identity":{   
+                "type":"UserAssigned", 
+                "userAssignedIdentities": { 
+                    "[parameters('msiToUseForScript')]": {} 
+                } 
+            },
+            "kind": "AzurePowerShell", 
+            "properties":
+            {     
+                "azPowerShellVersion": "1.7.0",
+                "arguments": "-commandText 'sp_helpdb'", 
+                "scriptContent": "
+                    param (
+                        [Parameter(Mandatory=$true)$commandText
+                    )
+
+                    $SqlConnection = New-Object System.Data.SqlClient.SqlConnection
+                    $SqlConnection.ConnectionString = $env:SqlConnectionString
+                    $SqlCmd = New-Object System.Data.SqlClient.SqlCommand
+                    $SqlCmd.CommandText = $commandText
+                    $SqlCmd.Connection = $SqlConnection
+                    $SqlAdapter = New-Object System.Data.SqlClient.SqlDataAdapter
+                    $SqlAdapter.SelectCommand = $SqlCmd
+                    $DataSet = New-Object System.Data.DataSet
+                    $SqlAdapter.Fill($DataSet)
+                    $SqlConnection.Close()
+                    $DataSet.Tables[0]
+
+                    $outputs = @{'timeCompleted' = (Get-Date)} # deploymentScript will pick this up as structured output
+                ",
+                "environmentVariables": [
+                    {
+                        "name": "SqlConnectionString",
+                        "secureValue": "[parameters('sqlConnectionString')]"
+                    }
+                ]
+            }
+        }
+    ],
+    "outputs": {
+        "timeCompleted": {
+            "type": "string",
+            "value": "[reference('scriptName').outputs.timeCompleted]" // using the output of the script
+        }
+    }
+}
