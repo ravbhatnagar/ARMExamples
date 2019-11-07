@@ -65,7 +65,7 @@
     "outputs": {
         "timeCompleted": {
             "type": "string",
-            "value": "[reference('scriptName').outputs.timeCompleted]" // using the output of the script
+            "value": "[reference('scriptName').outputs.timeCompleted]" 
         }
     }
 }
