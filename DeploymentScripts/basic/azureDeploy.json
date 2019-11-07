@@ -10,7 +10,7 @@
     "resources": [
         {
             "type": "Microsoft.Resources/deploymentScripts",
-            "name": "scriptInTemplate1",
+            "name": "ravscript1",
             "apiVersion": "2019-10-01-preview",
             "location": "[resourceGroup().location]", 
             "kind": "AzurePowerShell",
@@ -49,13 +49,10 @@
                 }
             },
             "properties": {
-                "azPowerShellVersion": "2.7",
+                "azPowerShellVersion": "1.7.0",
                 "scriptContent": "
-                    param([string] $textToEcho)
-                    Write-Output $textToEcho
-                    $DeploymentScriptOutputs['text'] = $textToEcho
+                    Write-Output \"Hello Ignite 2019\"
                 ",
-                "arguments": "[concat('-textToEcho ', reference('scriptInTemplate1').outputs.text, '-morestuff')]", 
                 "timeout": "PT30M",
                 "retentionInterval": "P1D"
             }
